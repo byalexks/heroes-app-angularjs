@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-heroes-tarjeta',
   templateUrl: './heroes-tarjeta.component.html'
 })
-export class HeroesTarjetaComponent implements OnInit {
+export class HeroesTarjetaComponent {
 
   @Input() heroe:any ={};
   @Input() index:any;
@@ -16,11 +16,11 @@ export class HeroesTarjetaComponent implements OnInit {
     this.heroeSelecionado = new EventEmitter();
   }
 
-  ngOnInit(): void {
-  }
 
   verHeroe(){
-    this.heroeSelecionado.emit(this.index);
+  //  console.log(this.index)
+   this._router.navigate( ['/heroe',this.index])
+  // this.heroeSelecionado.emit( this.index )
   }
 
 

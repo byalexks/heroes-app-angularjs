@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HeroesServices } from '../../services/heroes.services';
 
 
@@ -9,20 +9,16 @@ import { HeroesServices } from '../../services/heroes.services';
 })
 export class HeroeComponent{
 
-  heroes:any =[];
+  heroe:any =[];
 
   constructor( private _heroesServices:HeroesServices,
-               private _router: Router) {
+               private _activatedRoute: ActivatedRoute) {
 
-    this.heroes = this._heroesServices.getHeroes()
     
   }
-
-  verHeroe(idx:number){
-    this._router.navigate( ['/heroe', idx] )
-
+  ngOnInit() {
+    this._activatedRoute.params.subscribe(params=>{
+      this.heroe = this._heroesServices.getHeroe(params['id']);
+    })
   }
-
- 
-
 }
